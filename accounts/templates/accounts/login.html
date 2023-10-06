@@ -1,0 +1,10 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token%}
+        {{form}}
+        <button>Login</button>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,9 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+{% block content %}
+    <form action="/account/" method="post">
+        {% csrf_token%}
+        {{form}}
+        <button>Sign up</button>
+    </form>
+{% endblock %}
