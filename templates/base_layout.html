@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with JoeBLog landing page.">
     <meta name="author" content="Devcrud">
-    <title>JoeBLog | Free Bootstrap 4.3.x template</title>
+    <title>Ismail's blog</title>
     <!-- font icons -->
     <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
     <!-- Bootstrap + JoeBLog main styles -->
@@ -47,9 +47,33 @@
                     </li>
                 </ul>
                 <div class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="components.html" class="ml-4 btn btn-dark mt-1 btn-sm">Components</a>
+                        <form action="{% url 'articles:create_article' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="ml-4 btn btn-primary mt-1 btn-sm">Create blog</button>
+                        </form>
                     </li>
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="ml-4 btn btn-dark mt-1 btn-sm">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:login' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="ml-4 btn btn-dark mt-1 btn-sm">Log In</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:signup' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="ml-4 btn btn-dark mt-1 btn-sm">Sign Up</button>
+                        </form>
+                    </li>
+                    {% endif %}
                 </div>
             </div>
         </div>
